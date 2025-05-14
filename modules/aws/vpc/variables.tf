@@ -1,11 +1,13 @@
-variable az {
+#===<modules>/dev/vpc/variables.tf---#
+
+variable "az" {
   type = string
 }
 
-variable vpc_cidr_block {
+variable "vpc_cidr_block" {
   type = string
 }
 
-variable subnet_cidr_block {
+variable "subnet_cidr_block" {
   type = string
 }
