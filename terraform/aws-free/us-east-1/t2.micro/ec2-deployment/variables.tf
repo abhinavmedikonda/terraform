@@ -1,5 +1,3 @@
-#---<root>/dev/us-east-1/t2.micro/ec2-deployment/variables.tf---#
-
 variable "az" {
   description = "Availability zone for subnet"
   type        = string

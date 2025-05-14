@@ -1,5 +1,3 @@
-#---<modules>/dev/instance/variables.tf---#
-
 variable "instance_type" {
   type = string
 }

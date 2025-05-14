@@ -1,5 +1,3 @@
-#===<modules>/dev/vpc/variables.tf---#
-
 variable "az" {
   type = string
 }

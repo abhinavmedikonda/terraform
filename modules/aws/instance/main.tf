@@ -1,5 +1,3 @@
-#===<modules>/dev/instance/main.tf---#
-
 resource "aws_instance" "app_server" {
   ami           = data.aws_ssm_parameter.ec2-ami.value # Match the data below.
   instance_type = var.instance_type                    # Variable for reusability.

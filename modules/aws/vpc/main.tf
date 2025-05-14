@@ -1,5 +1,3 @@
-#===<modules>/dev/vpc/main.tf---#
-
 # Below code was consulted in online documentation.check "name"
 
 resource "aws_vpc" "instance_vpc" { # Could be named "main", "bla", or anything instead of "instance_vpc".
