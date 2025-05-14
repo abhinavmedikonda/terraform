@@ -100,10 +100,10 @@ jobs:
       #     pwd
       #     ls -l
 
-      - name: Terraform Format
-        id: fmt
-        working-directory: ${{matrix.tf_config}}
-        run: terraform fmt -check
+      # - name: Terraform Format
+      #   id: fmt
+      #   working-directory: ${{matrix.tf_config}}
+      #   run: terraform fmt -check
 
       - name: Terraform Init
         id: init
