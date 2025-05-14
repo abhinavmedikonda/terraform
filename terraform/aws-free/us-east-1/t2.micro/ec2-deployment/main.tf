@@ -18,7 +18,7 @@ terraform {
   }
 }
 
-provider aws {
+provider "aws" {
   region = local.location
 }
 
@@ -29,14 +29,14 @@ locals {
   environment   = local.cwd[3] # i.e.: 'aws-free'
 }
 
-module instance {
+module "instance" {
   source         = "../../../../../modules/aws/instance"
   instance_type  = local.instance_type
   instance_count = 2
   subnet_id      = module.vpc.subnet_id
 }
 
-module vpc {
+module "vpc" {
   source            = "../../../../../modules/aws/vpc"
   az                = var.az
   vpc_cidr_block    = var.vpc_cidr_block
