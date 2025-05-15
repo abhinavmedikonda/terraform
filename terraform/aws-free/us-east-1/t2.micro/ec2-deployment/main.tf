@@ -20,7 +20,7 @@ terraform {
 
 
 provider "aws" {
-  region = local.location
+  region = us-east-1
 }
 
 locals {
