@@ -44,7 +44,7 @@ output "configurations" {
 
 module "instance" {
 
-  source         = "git::https://github.com/abhinavmedikonda/terraform.git//modules/aws/instance?ref=v1.0.0"
+  source         = "github.com/abhinavmedikonda/terraform//modules/aws/instance?ref=v1.0.0"
   instance_type  = local.instance_type
   instance_count = 2
   subnet_id      = module.vpc.subnet_id
