@@ -32,14 +32,14 @@ locals {
 
 module "instance" {
   
-  source         = "../../../../../modules/aws/instance"
+  source         = "github.com/abhinavmedikonda/terraform//modules/aws/instance?ref=v1.0.0"
   instance_type  = local.instance_type
   instance_count = 2
   subnet_id      = module.vpc.subnet_id
 }
 
 module "vpc" {
-  source            = "../../../../../modules/aws/vpc"
+  source            = "github.com/abhinavmedikonda/terraform//modules/aws/vpc?ref=v1.0.0"
   az                = var.az
   vpc_cidr_block    = var.vpc_cidr_block
   subnet_cidr_block = var.subnet_cidr_block
