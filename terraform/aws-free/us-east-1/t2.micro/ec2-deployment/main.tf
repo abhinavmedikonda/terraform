@@ -31,7 +31,7 @@ locals {
 }
 
 module "instance" {
-  
+
   source         = "git::https://github.com/abhinavmedikonda/terraform.git//modules/aws/instance?ref=v1.0.0"
   instance_type  = local.instance_type
   instance_count = 2
