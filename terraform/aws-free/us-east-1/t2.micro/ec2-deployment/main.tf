@@ -28,9 +28,9 @@ locals {
   # instance_type = local.cwd[1]
   # location      = local.cwd[2]
   # environment   = local.cwd[3]
-  instance_type = t2.micro
-  location      = us-east-1
-  environment   = aws-free
+  instance_type = "t2.micro"
+  location      = "us-east-1"
+  environment   = "aws-free"
 }
 
 output "configurations" {
