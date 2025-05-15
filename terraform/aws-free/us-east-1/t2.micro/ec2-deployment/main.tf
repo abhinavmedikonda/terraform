@@ -30,8 +30,9 @@ locals {
   environment   = local.cwd[3] # i.e.: 'aws-free'
 }
 
-output "all_locals" {
+output "configurations" {
   value = {
+    path          = path.cwd
     instance_type = local.instance_type
     location      = local.location
     environment   = local.environment
