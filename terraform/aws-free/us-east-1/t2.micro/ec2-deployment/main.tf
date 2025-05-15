@@ -30,6 +30,14 @@ locals {
   environment   = local.cwd[3] # i.e.: 'aws-free'
 }
 
+output "all_locals" {
+  value = {
+    instance_type = local.instance_type
+    location      = local.location
+    environment   = local.environment
+  }
+}
+
 module "instance" {
 
   source         = "git::https://github.com/abhinavmedikonda/terraform.git//modules/aws/instance?ref=v1.0.0"
