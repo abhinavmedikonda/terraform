@@ -24,10 +24,13 @@ provider "aws" {
 }
 
 locals {
-  cwd           = reverse(split("/", path.cwd))
-  instance_type = local.cwd[1] # i.e.: The 't2_macro' directory.
-  location      = local.cwd[2] # i.e.: 'us-east-1'
-  environment   = local.cwd[3] # i.e.: 'aws-free'
+  # cwd           = reverse(split("/", path.cwd))
+  # instance_type = local.cwd[1]
+  # location      = local.cwd[2]
+  # environment   = local.cwd[3]
+  instance_type = t2.micro
+  location      = us-east-1
+  environment   = aws-free
 }
 
 output "configurations" {
