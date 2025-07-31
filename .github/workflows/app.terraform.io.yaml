@@ -38,7 +38,7 @@ jobs:
           git diff --name-only HEAD^ HEAD $TERRAFORM_CHECK_PATH > files1.txt
 
           echo "## All changed files"
-          cat file2.txt
+          cat file1.txt
 
           # Output a list of parent folder stripping out the file name
           # leaving only the parent dir name
