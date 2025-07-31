@@ -35,7 +35,7 @@ jobs:
         id: set-matrix
         run: |
           # A list of files that changed
-          git diff --name-only HEAD^ HEAD $TERRAFORM_CHECK_PATH > files1.txt
+          git diff --name-only HEAD^ HEAD $TERRAFORM_CHECK_PATH > file1.txt
 
           echo "## All changed files"
           cat file1.txt
@@ -46,7 +46,7 @@ jobs:
           do
             parent_dir=$(dirname -- "$file")
             echo $parent_dir >> file2.txt
-          done < files1.txt
+          done < file1.txt
 
           echo "## All changed directories"
           cat file2.txt
