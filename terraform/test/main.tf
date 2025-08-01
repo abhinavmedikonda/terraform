@@ -13,46 +13,21 @@ terraform {
     organization = "abhinavmedikonda-terraform"
 
     workspaces {
-      name = "ec2-deployment"
+      name = "test"
     }
   }
 }
 
 
 provider "aws" {
-  region = local.location
+  region = "us-east-1" # Choose a region where the S3 Free Tier applies
 }
 
-locals {
-  # cwd           = reverse(split("/", path.cwd))
-  # instance_type = local.cwd[1]
-  # location      = local.cwd[2]
-  # environment   = local.cwd[3]
-  instance_type = "t2.micro"
-  location      = "us-east-1"
-  environment   = "aws-free"
-}
+resource "aws_s3_bucket" "test_bucket" {
+  bucket = "abhi-terraform-test-bucket"
 
-output "configurations" {
-  value = {
-    path          = path.cwd
-    instance_type = local.instance_type
-    location      = local.location
-    environment   = local.environment
+  tags = {
+    Environment = "Test"
+    ManagedBy   = "Terraform"
   }
-}
-
-module "instance" {
-
-  source         = "github.com/abhinavmedikonda/terraform//modules/aws/instance?ref=main"
-  instance_type  = local.instance_type
-  instance_count = 2
-  subnet_id      = module.vpc.subnet_id
-}
-
-module "vpc" {
-  source            = "github.com/abhinavmedikonda/terraform//modules/aws/vpc?ref=main"
-  az                = var.az
-  vpc_cidr_block    = var.vpc_cidr_block
-  subnet_cidr_block = var.subnet_cidr_block
 }
