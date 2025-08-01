@@ -26,7 +26,7 @@ locals {
   # location      = local.cwd[2]
   # environment   = local.cwd[3]
   instance_type = "t2.micro"
-  location      = "us-east-1"
+  location      = "us-east-2"
   environment   = "aws-free"
 }
 
@@ -43,13 +43,6 @@ module "instance" {
 
   source         = "github.com/abhinavmedikonda/terraform//modules/aws/instance?ref=main"
   instance_type  = local.instance_type
-  instance_count = 2
+  instance_count = 1
   subnet_id      = module.vpc.subnet_id
-}
-
-module "vpc" {
-  source            = "github.com/abhinavmedikonda/terraform//modules/aws/vpc?ref=main"
-  az                = var.az
-  vpc_cidr_block    = var.vpc_cidr_block
-  subnet_cidr_block = var.subnet_cidr_block
 }
