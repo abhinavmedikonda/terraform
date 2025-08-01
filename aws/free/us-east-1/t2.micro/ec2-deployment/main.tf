@@ -1,27 +1,3 @@
-# Two blocks:
-
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = ">= 3.37.0"
-    }
-  }
-
-  backend "remote" {
-    # Update to your Terraform Cloud organization
-    organization = "abhinavmedikonda-terraform"
-
-    workspaces {
-      name = "ec2-deployment"
-    }
-  }
-}
-
-provider "aws" {
-  region = local.location
-}
-
 locals {
   # cwd           = reverse(split("/", path.cwd))
   # instance_type = local.cwd[1]
@@ -29,7 +5,7 @@ locals {
   # environment   = local.cwd[3]
   instance_type = "t2.micro"
   location      = "us-east-1"
-  environment   = "aws-free"
+  environment   = "free"
 }
 
 output "configurations" {

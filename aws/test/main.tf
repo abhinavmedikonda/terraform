@@ -18,16 +18,17 @@ terraform {
   }
 }
 
-
 provider "aws" {
   region = "us-east-1" # Choose a region where the S3 Free Tier applies
 }
 
-resource "aws_s3_bucket" "test_bucket" {
-  bucket = "abhinavmedikonda-bucket"
 
-  tags = {
-    Environment = "Test"
-    ManagedBy   = "Terraform"
-  }
-}
+
+# resource "aws_s3_bucket" "test_bucket" {
+#   bucket = "abhinavmedikonda-bucket"
+
+#   tags = {
+#     Environment = "Test"
+#     ManagedBy   = "Terraform"
+#   }
+# }
