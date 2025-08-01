@@ -24,7 +24,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "test_bucket" {
-  bucket = "abhinav-terraform-test-bucket"
+  bucket = "abhinav-test-bucket"
 
   tags = {
     Environment = "Test"
