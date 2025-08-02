@@ -18,6 +18,7 @@ provider "aws" {
   region = local.location
 }
 
+
 locals {
   location = "us-east-1"
 }
