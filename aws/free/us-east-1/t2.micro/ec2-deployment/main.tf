@@ -20,7 +20,6 @@
 #   region = local.location
 # }
 
-
 # locals {
 #   # cwd           = reverse(split("/", path.cwd))
 #   # instance_type = local.cwd[1]

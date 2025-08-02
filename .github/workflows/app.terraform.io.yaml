@@ -51,18 +51,18 @@ jobs:
           echo "## All changed directories"
           cat file2.txt
 
-          # sort file2.txt > file3.txt
-          # echo "## sorted directories"
-          # cat file3.txt
+          sort file2.txt > file3.txt
+          echo "## sorted directories"
+          cat file3.txt
 
           # There can be duplicates in the parent dir name if multiple
           # files changed in that parent dir.  This is to output a list
           # that is unqiue so that we don't run the plan on the same 
           # folder multiple times.
-          cat file2.txt | uniq > file3.txt
+          cat file3.txt | uniq > file4.txt
 
           echo "## Unique list of changed dirs only"
-          cat file3.txt
+          cat file4.txt
           echo "##"
 
           # Set the parent dir into the Github Actions json matrix
@@ -79,7 +79,7 @@ jobs:
             else
               tf_config="$tf_config, {\"tf_config\":\"$file\"}"
             fi
-          done < file3.txt
+          done < file4.txt
 
           tf_config="{\"include\":[$tf_config]}"
           echo "::set-output name=matrix::$tf_config"
