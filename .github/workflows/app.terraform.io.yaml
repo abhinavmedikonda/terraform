@@ -52,6 +52,8 @@ jobs:
           cat file2.txt
 
           sort file2.txt > file3.txt
+          echo "## sorted directories"
+          cat file3.txt
 
           # There can be duplicates in the parent dir name if multiple
           # files changed in that parent dir.  This is to output a list
