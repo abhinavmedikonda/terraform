@@ -9,9 +9,7 @@ terraform {
   }
 
   backend "remote" {
-    # Update to your Terraform Cloud organization
     organization = "abhinavmedikonda-terraform"
-
     workspaces {
       name = "test"
     }

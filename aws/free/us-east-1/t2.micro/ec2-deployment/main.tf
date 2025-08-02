@@ -7,9 +7,7 @@ terraform {
   }
 
   backend "remote" {
-    # Update to your Terraform Cloud organization
     organization = "abhinavmedikonda-terraform"
-
     workspaces {
       name = "ec2-deployment"
     }
@@ -42,7 +40,6 @@ output "configurations" {
 data "terraform_remote_state" "ec2deployment" {
   backend = "remote"
   config = {
-    # Update to your Terraform Cloud organization
     organization = "abhinavmedikonda-terraform"
     workspaces = {
       name = "ec2-deployment"
