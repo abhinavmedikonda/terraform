@@ -51,7 +51,7 @@ module "instance" {
 
   source         = "github.com/abhinavmedikonda/terraform//modules/aws/instance?ref=main"
   instance_type  = local.instance_type
-  instance_count = 2
+  instance_count = 1
   subnet_id      = data.terraform_remote_state.ec2deployment.outputs.subnet_id
 }
 
