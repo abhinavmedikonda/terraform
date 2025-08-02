@@ -1,4 +1,3 @@
-*.hcl
 **/.DS_Store
 
 # Local .terraform directories
