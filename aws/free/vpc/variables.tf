@@ -1,5 +1,5 @@
-variable "total" {
-  description = "count"
+variable "zones_count" {
+  description = "zones count for VPC"
   type        = number
   default     = 2
 }
