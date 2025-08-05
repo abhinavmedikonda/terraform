@@ -62,12 +62,12 @@ data "aws_ssm_parameter" "ec2-ami" {
 }
 
 resource "aws_launch_template" "launch_template" {
-  name                   = "launch-template"
-  image_id               = data.aws_ssm_parameter.ec2-ami.value
-  instance_type          = local.instance_type
+  name          = "launch-template"
+  image_id      = data.aws_ssm_parameter.ec2-ami.value
+  instance_type = local.instance_type
   # key_name               = "my-key-pair"
   # vpc_security_group_ids = [aws_security_group.instance_sg.id]
-  user_data              = <<EOF
+  user_data = <<EOF
 #! /bin/bash
 sudo amazon-linux-extras install -y nginx1
 sudo service nginx start
