@@ -60,7 +60,7 @@ resource "aws_launch_template" "launch_template" {
   name                   = "launch-template"
   image_id               = "ami-xxxxxxxx" //////////
   instance_type          = local.instance_type
-  key_name               = "my-key-pair" ///////////
+  key_name               = "my-key-pair"                       ///////////
   vpc_security_group_ids = [aws_security_group.instance_sg.id] ////////////
   user_data              = <<EOF
 #! /bin/bash
