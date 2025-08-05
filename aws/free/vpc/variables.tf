@@ -1,4 +1,4 @@
-variable "count" {
+variable "total" {
   description = "count"
   type        = number
   default     = 2

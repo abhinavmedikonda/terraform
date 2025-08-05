@@ -1,4 +1,4 @@
-variable "count" {
+variable "total" {
   type = string
 }
 
