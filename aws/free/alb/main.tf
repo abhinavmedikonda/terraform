@@ -33,7 +33,7 @@ resource "aws_lb" "alb" {
   internal           = false
   load_balancer_type = "application"
   subnets            = data.terraform_remote_state.vpc.outputs.subnet_ids
-  security_groups    = [aws_security_group.alb_sg.id]
+  # security_groups    = [aws_security_group.alb_sg.id]
 }
 
 resource "aws_lb_target_group" "alb_tg" {
@@ -56,12 +56,17 @@ resource "aws_lb_listener" "alb_listener" {
   }
 }
 
+data "aws_ssm_parameter" "ec2-ami" {
+  # Instead of a specific AMI id, query for the latest.
+  name = "/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2"
+}
+
 resource "aws_launch_template" "launch_template" {
   name                   = "launch-template"
-  image_id               = "ami-xxxxxxxx" //////////
+  image_id               = data.aws_ssm_parameter.ec2-ami.value
   instance_type          = local.instance_type
-  key_name               = "my-key-pair"                       ///////////
-  vpc_security_group_ids = [aws_security_group.instance_sg.id] ////////////
+  # key_name               = "my-key-pair"
+  # vpc_security_group_ids = [aws_security_group.instance_sg.id]
   user_data              = <<EOF
 #! /bin/bash
 sudo amazon-linux-extras install -y nginx1
