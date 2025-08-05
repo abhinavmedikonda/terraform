@@ -1,6 +1,8 @@
-output "subnet_id" {
-  description = "ID of subnet"
-  value       = aws_subnet.instance_subnet.id
+output "subnet_ids" {
+  description = "IDs of subnet"
+  value       = aws_subnet.subnet[*].id
 }
-
-# Necessary to communicate with the root module at <root>/terraform/aws-free/us-east-1/t2-micro/ec2-deployment/main.tf
+output "vpc_id" {
+  description = "ID of the VPC"
+  value       = aws_vpc.vpc.id
+}

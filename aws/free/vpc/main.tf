@@ -9,18 +9,13 @@ terraform {
   backend "remote" {
     organization = "abhinavmedikonda-terraform"
     workspaces {
-      name = "ec2-deployment"
+      name = "vpc"
     }
   }
 }
 
 provider "aws" {
   region = local.location
-}
-
-
-locals {
-  location = "us-east-1"
 }
 
 module "vpc" {
