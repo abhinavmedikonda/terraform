@@ -57,12 +57,12 @@ resource "aws_lb_listener" "alb_listener" {
 }
 
 resource "aws_launch_template" "launch_template" {
-  name = "launch-template"
-  image_id = "ami-xxxxxxxx"//////////
-  instance_type = local.instance_type
-  key_name = "my-key-pair"///////////
-  vpc_security_group_ids = [aws_security_group.instance_sg.id]////////////
-  user_data = <<EOF
+  name                   = "launch-template"
+  image_id               = "ami-xxxxxxxx" //////////
+  instance_type          = local.instance_type
+  key_name               = "my-key-pair" ///////////
+  vpc_security_group_ids = [aws_security_group.instance_sg.id] ////////////
+  user_data              = <<EOF
 #! /bin/bash
 sudo amazon-linux-extras install -y nginx1
 sudo service nginx start
@@ -72,14 +72,14 @@ EOF
 }
 
 resource "aws_autoscaling_group" "example_asg" {
-  name                      = "asg"
-  vpc_zone_identifier       = data.terraform_remote_state.vpc.outputs.subnet_ids
-  desired_capacity          = 2
-  min_size                  = 1
-  max_size                  = 3
+  name                = "asg"
+  vpc_zone_identifier = data.terraform_remote_state.vpc.outputs.subnet_ids
+  desired_capacity    = 2
+  min_size            = 1
+  max_size            = 3
   launch_template {
     id      = aws_launch_template.launch_template.id
     version = "$Latest"
   }
-  target_group_arns         = [aws_lb_target_group.alb_tg.arn]
+  target_group_arns = [aws_lb_target_group.alb_tg.arn]
 }
