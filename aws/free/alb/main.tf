@@ -76,15 +76,15 @@ EOF
   )
 }
 
-resource "aws_autoscaling_group" "example_asg" {
-  name                = "asg"
-  vpc_zone_identifier = data.terraform_remote_state.vpc.outputs.subnet_ids
-  desired_capacity    = 2
-  min_size            = 1
-  max_size            = 3
-  launch_template {
-    id      = aws_launch_template.launch_template.id
-    version = "$Latest"
-  }
-  target_group_arns = [aws_lb_target_group.alb_tg.arn]
-}
+# resource "aws_autoscaling_group" "example_asg" {
+#   name                = "asg"
+#   vpc_zone_identifier = data.terraform_remote_state.vpc.outputs.subnet_ids
+#   desired_capacity    = 2
+#   min_size            = 1
+#   max_size            = 3
+#   launch_template {
+#     id      = aws_launch_template.launch_template.id
+#     version = "$Latest"
+#   }
+#   target_group_arns = [aws_lb_target_group.alb_tg.arn]
+# }
