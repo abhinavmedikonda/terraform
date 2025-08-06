@@ -68,11 +68,19 @@ resource "aws_launch_template" "launch_template" {
   # key_name               = "my-key-pair"
   # vpc_security_group_ids = [aws_security_group.instance_sg.id]
   user_data = <<EOF
-#! /bin/bash
-sudo amazon-linux-extras install -y nginx1
-sudo service nginx start
-sudo rm /usr/share/nginx/html/index.html
-echo '<html><head><title>Taco Team Server</title></head><body style=\"background-color:#1F778D\"><p style=\"text-align: center;\"><span style=\"color:#FFFFFF;\"><span style=\"font-size:28px;\">You did it! Have a &#127790;</span></span></p></body></html>' | sudo tee /usr/share/nginx/html/index.html
+#!/bin/bash
+# Update the system
+sudo yum update -y
+
+# Install Apache web server
+sudo yum install -y httpd
+
+# Start Apache and enable it to start on boot
+sudo systemctl start httpd
+sudo systemctl enable httpd
+
+# Create a simple index.html file
+echo "<h1>Hello from Amazon Linux EC2!</h1>" | sudo tee /var/www/html/index.html
 EOF
 }
 
