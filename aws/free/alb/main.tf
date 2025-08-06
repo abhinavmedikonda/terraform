@@ -67,7 +67,7 @@ resource "aws_launch_template" "launch_template" {
   instance_type = local.instance_type
   # key_name               = "my-key-pair"
   # vpc_security_group_ids = [aws_security_group.instance_sg.id]
-  user_data = <<EOF
+  user_data = base64encode(<<EOF
 #!/bin/bash
 # Update the system
 sudo yum update -y
@@ -82,6 +82,7 @@ sudo systemctl enable httpd
 # Create a simple index.html file
 echo "<h1>Hello from Amazon Linux EC2!</h1>" | sudo tee /var/www/html/index.html
 EOF
+  )
 }
 
 resource "aws_autoscaling_group" "example_asg" {
