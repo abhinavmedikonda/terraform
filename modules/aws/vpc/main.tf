@@ -3,7 +3,7 @@ resource "aws_vpc" "vpc" {
 }
 
 resource "aws_subnet" "subnet" {
-  count             = var.total
+  count             = var.zones_count
   vpc_id            = aws_vpc.vpc.id
   availability_zone = var.azs[count.index]
   cidr_block        = var.subnet_cidr_blocks[count.index]

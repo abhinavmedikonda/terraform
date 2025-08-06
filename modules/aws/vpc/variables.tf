@@ -1,15 +1,23 @@
-variable "total" {
-  type = string
+variable "zones_count" {
+  description = "zones count for VPC"
+  type        = number
+  default     = 1
 }
 
 variable "vpc_cidr_block" {
-  type = string
+  description = "CIDR block for VPC"
+  type        = string
+  default     = "10.0.0.0/16"
 }
 
 variable "azs" {
-  type = list(string)
+  description = "Availability zones for subnet"
+  type        = list(string)
+  default     = ["us-east-1a"]
 }
 
 variable "subnet_cidr_blocks" {
-  type = list(string)
+  description = "CIDR blocks for subnets"
+  type        = list(string)
+  default     = ["10.0.0.0/24"]
 }

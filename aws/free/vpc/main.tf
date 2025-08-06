@@ -20,8 +20,8 @@ provider "aws" {
 
 module "vpc" {
   source             = "github.com/abhinavmedikonda/terraform//modules/aws/vpc?ref=main"
-  total              = var.total
-  vpc_cidr_block     = var.vpc_cidr_block
-  azs                = var.azs
-  subnet_cidr_blocks = var.subnet_cidr_blocks
+  zones_count        = local.zones_count
+  vpc_cidr_block     = local.vpc_cidr_block
+  azs                = local.azs
+  subnet_cidr_blocks = local.subnet_cidr_blocks
 }
