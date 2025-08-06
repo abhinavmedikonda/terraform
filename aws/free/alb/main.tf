@@ -47,11 +47,16 @@ resource "aws_lb_listener" "alb_listener" {
   }
 }
 
+resource "aws_key_pair" "key_pair" {
+  key_name   = "key-pair"
+  public_key = file("key-pair.pub")
+}
+
 resource "aws_launch_template" "launch_template" {
   name          = "launch-template"
   image_id      = data.aws_ssm_parameter.ec2-ami.value
   instance_type = local.instance_type
-  # key_name               = "my-key-pair"
+  key_name      = aws_key_pair.key_pair.key_name
   # vpc_security_group_ids = [aws_security_group.instance_sg.id]
   user_data = base64encode(<<EOF
 #!/bin/bash
