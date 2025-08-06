@@ -18,15 +18,6 @@ provider "aws" {
   region = local.location
 }
 
-data "terraform_remote_state" "vpc" {
-  backend = "remote"
-  config = {
-    organization = "abhinavmedikonda-terraform"
-    workspaces = {
-      name = "vpc"
-    }
-  }
-}
 
 resource "aws_lb" "alb" {
   name               = "alb"
@@ -54,11 +45,6 @@ resource "aws_lb_listener" "alb_listener" {
     type             = "forward"
     target_group_arn = aws_lb_target_group.alb_tg.arn
   }
-}
-
-data "aws_ssm_parameter" "ec2-ami" {
-  # Instead of a specific AMI id, query for the latest.
-  name = "/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2"
 }
 
 resource "aws_launch_template" "launch_template" {
