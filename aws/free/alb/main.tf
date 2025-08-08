@@ -47,6 +47,8 @@ resource "aws_lb_listener" "alb_listener" {
   }
 }
 
+
+# ssh-keygen -t rsa -b 4096 -f ~/.ssh/key-pair.pem
 resource "aws_key_pair" "key_pair" {
   key_name   = "key-pair"
   public_key = file("key-pair.pub")
