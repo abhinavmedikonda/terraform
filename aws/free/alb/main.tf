@@ -60,6 +60,9 @@ resource "aws_launch_template" "launch_template" {
   image_id      = data.aws_ssm_parameter.ec2-ami.value
   instance_type = local.instance_type
   key_name      = aws_key_pair.key_pair.key_name
+  network_interfaces {
+    associate_public_ip_address = false
+  }
   # vpc_security_group_ids = [aws_security_group.instance_sg.id]
   user_data = base64encode(<<EOF
 #!/bin/bash
