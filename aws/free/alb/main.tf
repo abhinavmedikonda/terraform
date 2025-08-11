@@ -110,11 +110,11 @@ resource "aws_security_group" "security_group" {
     cidr_blocks = ["0.0.0.0/0"] # Allows access from any IPv4 address
   }
 
-  # ingress {
-  #   description = "Allow SSH from anywhere"
-  #   from_port   = 22
-  #   to_port     = 22
-  #   protocol    = "tcp"
-  #   cidr_blocks = ["0.0.0.0/0"] # Restrict this as needed for your environment
-  # }
+  ingress {
+    description = "Allow SSH from anywhere"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"] # Restrict this as needed for your environment
+  }
 }
