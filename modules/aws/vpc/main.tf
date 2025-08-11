@@ -23,3 +23,9 @@ resource "aws_route_table" "route_table" {
     gateway_id = aws_internet_gateway.igw.id
   }
 }
+
+resource "aws_route_table_association" "subnet_route_table" {
+  count          = var.zones_count
+  subnet_id      = aws_subnet.subnet[count.index].id
+  route_table_id = aws_route_table.route_table.id
+}
