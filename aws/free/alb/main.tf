@@ -97,9 +97,9 @@ resource "aws_autoscaling_group" "example_asg" {
 }
 
 resource "aws_security_group" "security_group" {
-  name        = "example-security-group"
-  description = "Example security group"
-  vpc_id      = aws_vpc.main.id
+  name        = "security-group"
+  description = "security group"
+  vpc_id      = data.terraform_remote_state.vpc.outputs.vpc_id
 
   ingress {
     description = "Allow HTTP from anywhere"
