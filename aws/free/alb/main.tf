@@ -62,6 +62,7 @@ resource "aws_launch_template" "launch_template" {
   key_name      = aws_key_pair.key_pair.key_name
   network_interfaces {
     associate_public_ip_address = false
+    ipv6_address_count          = local.max_size 
     security_groups             = [aws_security_group.security_group.id]
   }
   # vpc_security_group_ids = [aws_security_group.instance_sg.id]
@@ -86,9 +87,9 @@ EOF
 resource "aws_autoscaling_group" "example_asg" {
   name                = "asg"
   vpc_zone_identifier = data.terraform_remote_state.vpc.outputs.subnet_ids
-  desired_capacity    = 2
-  min_size            = 1
-  max_size            = 3
+  desired_capacity    = local.desired_capacity
+  min_size            = local.min_size
+  max_size            = local.max_size
   launch_template {
     id      = aws_launch_template.launch_template.id
     version = "$Latest"
