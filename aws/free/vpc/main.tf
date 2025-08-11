@@ -26,4 +26,3 @@ module "vpc" {
   subnet_cidr_blocks = local.subnet_cidr_blocks
   assign_ipv6        = local.assign_ipv6
 }
-
