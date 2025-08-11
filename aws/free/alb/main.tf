@@ -25,7 +25,7 @@ resource "aws_lb" "alb" {
   load_balancer_type = "application"
   subnets            = data.terraform_remote_state.vpc.outputs.subnet_ids
   ip_address_type    = "dualstack"
-  # security_groups    = [aws_security_group.alb_sg.id]
+  security_groups    = [aws_security_group.security_group.id]
 }
 
 resource "aws_lb_target_group" "alb_tg" {
