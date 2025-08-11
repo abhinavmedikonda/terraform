@@ -103,18 +103,34 @@ resource "aws_security_group" "security_group" {
   vpc_id      = data.terraform_remote_state.vpc.outputs.vpc_id
 
   ingress {
-    description = "Allow HTTP from anywhere"
+    description = "Allow HTTP (IPv4)"
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"] # Allows access from any IPv4 address
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
-    description = "Allow SSH from anywhere"
+    description      = "Allow HTTP (IPv6)"
+    from_port        = 80
+    to_port          = 80
+    protocol         = "tcp"
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
+  ingress {
+    description = "Allow SSH (IPv4)"
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"] # Restrict this as needed for your environment
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description      = "Allow SSH (IPv6)"
+    from_port        = 22
+    to_port          = 22
+    protocol         = "tcp"
+    ipv6_cidr_blocks = ["::/0"]
   }
 }
