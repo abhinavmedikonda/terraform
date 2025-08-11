@@ -57,7 +57,7 @@ resource "aws_key_pair" "key_pair" {
 
 resource "aws_launch_template" "launch_template" {
   name          = "launch-template"
-  image_id      = data.aws_ssm_parameter.ec2-ami.value
+  image_id      = data.aws_ami.amazon_linux.id
   instance_type = local.instance_type
   key_name      = aws_key_pair.key_pair.key_name
   # vpc_security_group_ids = [aws_security_group.instance_sg.id]
@@ -74,7 +74,7 @@ sudo systemctl start httpd
 sudo systemctl enable httpd
 
 # Create a simple index.html file
-echo "<h1>Hello from Amazon Linux EC2!</h1>" | sudo tee /var/www/html/index.html
+echo '<h1>Hello from Amazon Linux EC2!</h1>' | sudo tee /var/www/html/index.html
 EOF
   )
 }
