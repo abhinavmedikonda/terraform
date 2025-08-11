@@ -62,7 +62,7 @@ resource "aws_launch_template" "launch_template" {
   key_name      = aws_key_pair.key_pair.key_name
   network_interfaces {
     associate_public_ip_address = false
-    ipv6_address_count          = local.max_size 
+    ipv6_address_count          = local.max_size
     security_groups             = [aws_security_group.security_group.id]
   }
   # vpc_security_group_ids = [aws_security_group.instance_sg.id]
