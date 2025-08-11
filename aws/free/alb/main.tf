@@ -62,6 +62,7 @@ resource "aws_launch_template" "launch_template" {
   key_name      = aws_key_pair.key_pair.key_name
   network_interfaces {
     associate_public_ip_address = false
+    security_groups             = [aws_security_group.security_group.id]
   }
   # vpc_security_group_ids = [aws_security_group.instance_sg.id]
   user_data = base64encode(<<EOF
@@ -93,4 +94,26 @@ resource "aws_autoscaling_group" "example_asg" {
     version = "$Latest"
   }
   target_group_arns = [aws_lb_target_group.alb_tg.arn]
+}
+
+resource "aws_security_group" "security_group" {
+  name        = "example-security-group"
+  description = "Example security group"
+  vpc_id      = aws_vpc.main.id
+
+  ingress {
+    description = "Allow HTTP from anywhere"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"] # Allows access from any IPv4 address
+  }
+
+  # ingress {
+  #   description = "Allow SSH from anywhere"
+  #   from_port   = 22
+  #   to_port     = 22
+  #   protocol    = "tcp"
+  #   cidr_blocks = ["0.0.0.0/0"] # Restrict this as needed for your environment
+  # }
 }
