@@ -4,12 +4,13 @@ resource "aws_vpc" "vpc" {
 }
 
 resource "aws_subnet" "subnet" {
-  count                   = var.zones_count
-  vpc_id                  = aws_vpc.vpc.id
-  availability_zone       = var.azs[count.index]
-  cidr_block              = var.subnet_cidr_blocks[count.index]
-  ipv6_cidr_block         = cidrsubnet(aws_vpc.vpc.ipv6_cidr_block, 8, count.index) # Assigns an IPv6 CIDR to the subnet
-  map_public_ip_on_launch = true
+  count                           = var.zones_count
+  vpc_id                          = aws_vpc.vpc.id
+  availability_zone               = var.azs[count.index]
+  cidr_block                      = var.subnet_cidr_blocks[count.index]
+  ipv6_cidr_block                 = cidrsubnet(aws_vpc.vpc.ipv6_cidr_block, 8, count.index) # Assigns an IPv6 CIDR to the subnet
+  map_public_ip_on_launch         = false
+  assign_ipv6_address_on_creation = true # Enables automatic assignment of an IPv6 address to instances launched in this subnet
 }
 
 resource "aws_internet_gateway" "igw" {
