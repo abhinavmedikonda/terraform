@@ -78,8 +78,12 @@ sudo yum install -y httpd
 sudo systemctl start httpd
 sudo systemctl enable httpd
 
+TOKEN=$(curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600")
+IPv6=$(curl -H "X-aws-ec2-metadata-token: $TOKEN" http://169.254.169.254/latest/meta-data/ipv6)
+
 # Create a simple index.html file
-echo '<h1>Hello from Amazon Linux EC2!</h1>' | sudo tee /var/www/html/index.html
+echo '<center><h1>Hello from Amazon Linux EC2!</h1></center>' | sudo tee /var/www/html/index.html
+echo "<center><h1>IPv6: $IPv6</h1></center>" | sudo tee -a /var/www/html/index.html
 EOF
   )
 }
