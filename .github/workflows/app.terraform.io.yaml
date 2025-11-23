@@ -1,20 +1,17 @@
 # The name of the pipeline.  Must be unique.
 name: "Terraform - AWS"
 
-paths: &paths
-  - "aws/**"
-
 on:
   push:
     # only run when files in this path changes
     # https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions#example-using-positive-and-negative-patterns-1
-    paths: *paths
+    paths: aws/**
     branches:
       - main
   pull_request:
     # only run when files in this path changes
     # https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions#example-using-positive-and-negative-patterns-1
-    paths: *paths
+    paths: aws/**
 
 jobs:
   ## This generates a matrix of changed directory to run Terraform on
