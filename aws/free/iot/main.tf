@@ -32,9 +32,7 @@ resource "aws_iot_policy" "mac" {
         "iot:PublishRetain"
       ],
       "Resource": [
-        "arn:aws:iot:us-east-1:300844397244:topic/sdk/test/java",
-        "arn:aws:iot:us-east-1:300844397244:topic/sdk/test/python",
-        "arn:aws:iot:us-east-1:300844397244:topic/sdk/test/js"
+        "arn:aws:iot:us-east-1:300844397244:topic/mac/*"
       ]
     },
     {
@@ -43,9 +41,7 @@ resource "aws_iot_policy" "mac" {
         "iot:Subscribe"
       ],
       "Resource": [
-        "arn:aws:iot:us-east-1:300844397244:topicfilter/sdk/test/java",
-        "arn:aws:iot:us-east-1:300844397244:topicfilter/sdk/test/python",
-        "arn:aws:iot:us-east-1:300844397244:topicfilter/sdk/test/js"
+        "arn:aws:iot:us-east-1:300844397244:topicfilter/mac/*"
       ]
     },
     {
@@ -54,9 +50,7 @@ resource "aws_iot_policy" "mac" {
         "iot:Connect"
       ],
       "Resource": [
-        "arn:aws:iot:us-east-1:300844397244:client/sdk-java",
-        "arn:aws:iot:us-east-1:300844397244:client/basicPubSub",
-        "arn:aws:iot:us-east-1:300844397244:client/sdk-nodejs-*"
+        "arn:aws:iot:us-east-1:300844397244:client/mac"
       ]
     }
   ]
