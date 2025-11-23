@@ -1,24 +1,3 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = ">= 3.37.0"
-    }
-  }
-
-  backend "remote" {
-    organization = "abhinavmedikonda-terraform"
-    workspaces {
-      name = "alb"
-    }
-  }
-}
-
-provider "aws" {
-  region = local.location
-}
-
-
 resource "aws_lb" "alb" {
   name               = "alb"
   internal           = false

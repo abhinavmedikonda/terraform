@@ -1,9 +1,9 @@
-data "terraform_remote_state" "ec2deployment" {
+data "terraform_remote_state" "vpc" {
   backend = "remote"
   config = {
     organization = "abhinavmedikonda-terraform"
     workspaces = {
-      name = "ec2-deployment"
+      name = "vpc"
     }
   }
 }

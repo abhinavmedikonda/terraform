@@ -1,19 +1,20 @@
 # The name of the pipeline.  Must be unique.
 name: "Terraform - AWS"
 
+x-paths: &paths
+  - "aws/**"
+
 on:
   push:
     # only run when files in this path changes
     # https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions#example-using-positive-and-negative-patterns-1
-    paths:
-    - 'aws/**'
+    paths: *paths
     branches:
       - main
   pull_request:
     # only run when files in this path changes
     # https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions#example-using-positive-and-negative-patterns-1
-    paths:
-    - 'aws/**'
+    paths: *paths
 
 jobs:
   ## This generates a matrix of changed directory to run Terraform on
@@ -86,11 +87,12 @@ jobs:
 
   terraform:
     name: "Terraform"
-    needs: [generate_matrix]
+    # needs: [generate_matrix]
     strategy:
-      matrix: ${{fromJson(needs.generate_matrix.outputs.matrix)}}
-      max-parallel: 1 # This ensures only one job from the matrix runs at a time
-      fail-fast: true # (Optional) To cancel all subsequent jobs if one fails
+      matrix: # ${{fromJson(needs.generate_matrix.outputs.matrix)}}
+        tf_config: ["aws/iot"]
+      max-parallel: 1
+      fail-fast: true
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
