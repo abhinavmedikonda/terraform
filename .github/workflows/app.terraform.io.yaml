@@ -1,9 +1,8 @@
 # The name of the pipeline.  Must be unique.
 name: "Terraform - AWS"
 
-env:
-  x-paths: &paths
-    - "aws/**"
+paths: &paths
+  - "aws/**"
 
 on:
   push:
